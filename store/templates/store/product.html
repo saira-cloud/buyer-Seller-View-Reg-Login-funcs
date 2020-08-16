@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Product View</title>
+
+	<style>
+		.productView {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 8px 8px 8px 8px #888888 !important;
+			margin-top: 2%;
+			margin-left: 5%;
+			margin-right: 10%;
+			height: 600px;
+			background-color: snow;
+
+
+
+		}
+
+		.viewImage {
+			height: 500px;
+			border: 3px solid #ababab;
+			padding: 15px;
+			margin: 15px;
+
+		}
+
+		.imageAttr {
+			width: px;
+			height: 500px;
+
+			border: 3px solid #ababab;
+			align-items: center;
+			justify-content: center;
+			align-content: center;
+			padding: 10px;
+			margin: 15px
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="{% url 'store' %}">e-GhalaMandi</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+
+
+			<!-- creating  cart  -->
+			<div>
+				<a href="{% url 'create_product' %}" class="btn btn-success">Add Product</a>
+
+				<a href="{% url 'cart' %}">
+					<img id="cart-icon" src="{% static 'images/cart2.png' %}">
+				</a>
+				<p id="cart-total">{{cartItems}}</p>
+
+			</div>
+			<div>
+
+			</div>
+		</div>
+		&nbsp; &nbsp;
+
+		<span id="hello-msg">Hello,{{request.user}}</span>
+
+		<span><a href="{% url 'logout' %}">logout</a></span>
+
+	</nav>
+
+	{% block content %}
+
+	<div class="product-tag">
+		<h2>
+			<font color="#ababab">PRODUCT</font>
+			<font color="#5cb85c">DETAIL</font>
+		</h2>
+		<hr class="bg-dark mb-4 mt-0" style="width: 500px; height: 2px; align-content: center;">
+	</div>
+
+	<div class="productView">
+		<div class="viewImage">
+			<img src="{{products.imageURL}}" width="" height="400px">
+
+		</div>
+
+		<div class="imageAttr">
+			<p><b>Product:</b> &nbsp;{{products.name}}</p>
+			<br>
+			<p><b>Rs</b>.&nbsp;{{products.price}}&nbsp;/kg</p>
+			<br>
+
+			<p><b>Description:</b></p>
+			<br>
+			<p>{{products.description}}</p>
+
+		</div>
+	</div>
+
+
+
+	{% endblock content %}
+
+</body>
+
+</html>

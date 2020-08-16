@@ -1,0 +1,55 @@
+<style>
+     .product-tag {
+          text-align: center !important;
+          margin-top: 2%;
+
+     }
+
+     .banner {
+          width: 100%;
+     }
+</style>
+
+{% extends 'store/main.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<img src="{% static 'images/banner1.png' %}" class="banner">
+<br>
+<br>
+<div class="container">
+<div class="product-tag">
+
+     <h2>
+          <font color="#ababab">FEATURED</font>
+          <font color="#5cb85c">PRODUCTS</font>
+     </h2>
+</div>
+<br>
+<hr class="bg-success mb-4 mt-0" style="width: 500-px; height: 2px; align-content: center;">
+<br>
+<div class="row">
+     {% for product in products %}
+     <div class="col-lg-4">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+               <h4><strong>{{product.name}}</strong></h4>
+               <h5 style="display: inline-block;">
+                    <strong>Rs.{{product.price|floatformat:1}}/kg</strong></h5>
+               <hr>
+               <button data-product={{product.id}} data-action="add"
+                    class="btn btn-outline-success add-btn update-cart">Add to Cart</button>
+
+               <a class="btn btn-outline-success" href="{% url 'product' product.id %}">View</a>
+
+               
+          </div>
+     </div>
+     {% endfor %}
+
+
+</div>
+{% endblock %}
+</div>
